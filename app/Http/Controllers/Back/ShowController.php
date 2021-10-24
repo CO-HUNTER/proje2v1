@@ -10,7 +10,7 @@ class ShowController extends Controller
     //
     public function products(){
 
-        $query=DB::table('products')->get();
+        $query=DB::table('products')->simplePaginate(1);
         return view('back.productslist',compact('query'));
     }
 }

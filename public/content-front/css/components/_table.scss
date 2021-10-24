@@ -1,0 +1,35 @@
+.table {
+  width: 60%;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+  user-select: none;
+
+  th,
+  td {
+    padding: 16px;
+    text-align: center;
+  }
+
+  thead {
+    th {
+      background: $current_color;
+      color: #fff;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background: #f2f2f2;
+      }
+
+      td {
+        color: $text_color;
+
+        i {
+          @extend %operation_icon;
+        }
+      }
+    }
+  }
+}

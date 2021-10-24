@@ -1,0 +1,40 @@
+%dflex {
+  display: flex;
+}
+
+%boron {
+  border: none;
+  outline: none;
+}
+
+%trans {
+  transition: all .3s;
+}
+
+%flex_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%operation_icon {
+  cursor: pointer;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 17px;
+  margin: 0 5px;
+  border-radius: 5px;
+
+  @for $i from 1 through length($table-operation_color) {
+    &:nth-child(#{$i}) {
+      background-color: nth($table-operation_color, $i);
+    }
+  }
+}
+
+%sec {
+  width: 60%;
+  margin: 25px 0;
+  font-size: 15px;
+  color: $text_color;
+}

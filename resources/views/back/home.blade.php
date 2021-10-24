@@ -4,7 +4,7 @@
 
  @section('body')
     
-
+<a href="{{route('recordsProduct')}}">Ürün bilgilerini indir </a>
 
  
  @endsection

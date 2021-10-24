@@ -9,6 +9,16 @@
             });
         </script>
     @endif
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+    <script>
+      tori.notification("{{$error}}", {
+        type: "error",
+        duration: 5000
+      });
+    </script>
+    @endforeach
+    @endif
     <div id="content">
         <section id="tables">
             <table>
@@ -35,21 +45,24 @@
                     @endforeach
                 </tbody>
             </table>
+           
         </section>
-
+        {{ $query->links() }}
         <section class="update_modal-box">
             <div class="update_modal">
                 <form action="" method="POST">
+                  
                     <header>
                         <h2>Ürün Güncelle</h2>
                         <i class="uil uil-times"></i>
                     </header>
                     <label>Ürün Adı</label>
-                    <input type="text" name="update-product_name">
+                    <input type="text" name="update_product_name">
                     <label>Barkod</label>
-                    <input type="text" name="update-product_barcode">
+                    <input type="text" name="update_product_barcode">
                     <label>Ürün Fiyatı</label>
-                    <input type="text" name="update-product_price">
+                    <input type="text" name="update_product_price">
+                    @csrf
                     <button type="submit">
                         GÜNCELLE
                     </button>
@@ -73,7 +86,8 @@
                 e.preventDefault();
                 modal.classList.add("show");
                 let id = e.target.parentElement.getAttribute("href");
-                form.setAttribute("action",id);
+                let url="{{route('updateProduct')}}";
+                form.setAttribute("action",`${url}/${id}`);
                 let td = [...e.target.closest("tr").children].filter(item => item.classList.contains("current_row") && item);
                 form.querySelectorAll("input").forEach((item, index) => item.value = td[index].innerText)
             })

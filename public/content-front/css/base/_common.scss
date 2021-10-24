@@ -1,0 +1,32 @@
+.text-center {
+  text-align: center;
+}
+
+.my {
+  margin: 30px 0;
+}
+
+.flex_center {
+  @extend %flex_center;
+}
+
+.operation_information {
+  @extend %sec;
+
+  i {
+    &:not(:first-child) {
+      margin-left: 50px
+    }
+
+    @extend %operation_icon;
+  }
+}
+
+.order_information {
+  @extend %sec;
+
+  span {
+    font-weight: bold;
+    margin-left: 10px;
+  }
+}

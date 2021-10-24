@@ -9,6 +9,16 @@
             });
         </script>
     @endif
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+    <script>
+      tori.notification("{{$error}}", {
+        type: "error",
+        duration: 5000
+      });
+    </script>
+    @endforeach
+    @endif
     <div id="content">
         <section id="productDetails">
             <form action="{{ route('addProduct') }}" id="add-product" method="POST">

@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300&display=swap");
+.form .input_field input {
+  border: none;
+  outline: none;
+}
+
+.flex_center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.operation_information i, .table tbody tr td i {
+  cursor: pointer;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 17px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+.operation_information i:nth-child(1), .table tbody tr td i:nth-child(1) {
+  background-color: #00b894;
+}
+
+.operation_information i:nth-child(2), .table tbody tr td i:nth-child(2) {
+  background-color: #e17055;
+}
+
+.operation_information i:nth-child(3), .table tbody tr td i:nth-child(3) {
+  background-color: #d63031;
+}
+
+.operation_information, .order_information {
+  width: 60%;
+  margin: 25px 0;
+  font-size: 15px;
+  color: #2d3436;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.my {
+  margin: 30px 0;
+}
+
+.operation_information i:not(:first-child) {
+  margin-left: 50px;
+}
+
+.order_information span {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.form {
+  padding: 20px;
+  width: 40%;
+}
+
+.form .input_field {
+  width: 100%;
+}
+
+.form .input_field label {
+  color: #636e72;
+  font-size: 15px;
+}
+
+.form .input_field input {
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 11px;
+  border-radius: 6px;
+  margin: 10px 0;
+  color: #2d3436;
+}
+
+.table {
+  width: 60%;
+  border-collapse: collapse;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.table th,
+.table td {
+  padding: 16px;
+  text-align: center;
+}
+
+.table thead th {
+  background: #00b894;
+  color: #fff;
+}
+
+.table tbody tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+.table tbody tr td {
+  color: #2d3436;
+}
+/*# sourceMappingURL=main.css.map */
