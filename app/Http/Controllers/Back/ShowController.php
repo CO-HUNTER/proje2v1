@@ -11,6 +11,6 @@ class ShowController extends Controller
     public function products(){
 
         $query=DB::table('products')->get();
-        return view('back.products',compact('query'));
+        return view('back.productslist',compact('query'));
     }
 }

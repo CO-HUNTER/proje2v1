@@ -20,7 +20,11 @@ use App\Http\Controllers\back\DeleteController;
 
 Route::middleware(['login'])->prefix('admin')->group(function () {
   
-  Route::get('/products',[ShowController::class,'products'])->name('products');
+  Route::get('/productslist',[ShowController::class,'products'])->name('products');
+
+  Route::get('productadd', function(){
+    return view('back.products');
+  })->name('productAdd');
   //back get
   Route::get('/deleteProduct/{id}',[DeleteController::class,'deleteProduct'])->name('deleteProduct');
   //Post routes

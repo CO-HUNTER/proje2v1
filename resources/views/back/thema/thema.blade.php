@@ -21,11 +21,11 @@
                 <a href="#">
                     <li>Anasayfa</li>
                 </a>
-                <a href="#">
-                    <li>Ürünler</li>
+                <a href="{{route('productAdd')}}">
+                    <li>Ürün Ekle</li>
                 </a>
-                <a href="#">
-                    <li>Anasayfa</li>
+                <a href="{{route('products')}}">
+                    <li>Ürün Listele</li>
                 </a>
             </ul>
         </section>
