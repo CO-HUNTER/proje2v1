@@ -1,0 +1,40 @@
+#tables {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    table {
+        border-collapse: collapse;
+        width: 60%;
+        border: 1px solid #ccc;
+
+        tbody {
+          tr {
+            height: 80px !important;
+            &:nth-child(even) {
+              background: #f2f2f2;
+            }
+
+            i {
+              &.uil-trash {
+                color: #b71540;
+                font-size: 18px;
+              }
+            }
+          }
+        }
+
+        td,
+        th {
+          text-align: center;
+            padding: 15px;
+        }
+
+        th {
+            background: #2980b9;
+            color: #fff;
+        }
+    }
+}

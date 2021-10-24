@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@-webkit-keyframes show {
+  0% {
+    -webkit-transform: translateX(-10%) scale(1);
+            transform: translateX(-10%) scale(1);
+  }
+  30% {
+    -webkit-transform: translateX(0%) scale(1);
+            transform: translateX(0%) scale(1);
+  }
+  60% {
+    -webkit-transform: translateX(-10%) scale(1);
+            transform: translateX(-10%) scale(1);
+  }
+  100% {
+    -webkit-transform: translateX(0%) scale(1);
+            transform: translateX(0%) scale(1);
+  }
+}
+@keyframes show {
+  0% {
+    -webkit-transform: translateX(-10%) scale(1);
+            transform: translateX(-10%) scale(1);
+  }
+  30% {
+    -webkit-transform: translateX(0%) scale(1);
+            transform: translateX(0%) scale(1);
+  }
+  60% {
+    -webkit-transform: translateX(-10%) scale(1);
+            transform: translateX(-10%) scale(1);
+  }
+  100% {
+    -webkit-transform: translateX(0%) scale(1);
+            transform: translateX(0%) scale(1);
+  }
+}
+
+@-webkit-keyframes hide {
+  0% {
+    -webkit-transform: translateX(-10%) scale(1);
+            transform: translateX(-10%) scale(1);
+  }
+  30% {
+    -webkit-transform: translateX(0%) scale(1);
+            transform: translateX(0%) scale(1);
+  }
+  60% {
+    -webkit-transform: translateX(-10%) scale(1);
+            transform: translateX(-10%) scale(1);
+  }
+  100% {
+    -webkit-transform: translateX(100%) scale(0);
+            transform: translateX(100%) scale(0);
+  }
+}
+
+@keyframes hide {
+  0% {
+    -webkit-transform: translateX(-10%) scale(1);
+            transform: translateX(-10%) scale(1);
+  }
+  30% {
+    -webkit-transform: translateX(0%) scale(1);
+            transform: translateX(0%) scale(1);
+  }
+  60% {
+    -webkit-transform: translateX(-10%) scale(1);
+            transform: translateX(-10%) scale(1);
+  }
+  100% {
+    -webkit-transform: translateX(100%) scale(0);
+            transform: translateX(100%) scale(0);
+  }
+}
+
+.alertMessageContainer {
+  position: fixed;
+  right: 2%;
+  bottom: 3%;
+  width: 400px;
+  height: auto;
+}
+
+.alertMessageContainer p {
+  color: #fff;
+  height: 100%;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.alertMessageContainer div {
+  position: relative;
+  margin: 15px 0;
+  border-radius: 6px;
+  min-height: 50px;
+  z-index: 99999;
+  padding: 0 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: transparent;
+}
+
+.alertMessageContainer div i {
+  font-size: 25px;
+  margin: 0 7px;
+}
+
+.alertMessageContainer div.active {
+  -webkit-animation: show 1s ease;
+          animation: show 1s ease;
+}
+
+.alertMessageContainer div.hide {
+  -webkit-animation: hide 1s ease;
+          animation: hide 1s ease;
+}
+
+.alertMessageContainer .alertError::before,
+.alertMessageContainer .alertSuccess::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 7px;
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.alertMessageContainer .alertError {
+  position: relative;
+  background-color: #ffcce0;
+}
+
+.alertMessageContainer .alertError::before {
+  background-color: #990513;
+}
+
+.alertMessageContainer .alertError i,
+.alertMessageContainer .alertError p {
+  color: #990513;
+}
+
+.alertMessageContainer .alertSuccess {
+  background-color: #c2f0c2;
+}
+
+.alertMessageContainer .alertSuccess::before {
+  background-color: #106328;
+}
+
+.alertMessageContainer .alertSuccess i,
+.alertMessageContainer .alertSuccess p {
+  color: #106328;
+}
+
+.alert__popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 30%;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.alert__popup.active {
+  top: 50%;
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.alert__popup .fa-times {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 22px;
+  cursor: pointer;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.alert__popup .fa-times:hover {
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+
+.alert__popup .popup__iconBx {
+  width: 90px;
+  height: 90px;
+  border: 2px solid #d35400;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.alert__popup .popup__iconBx i {
+  color: #d35400;
+  font-size: 45px;
+}
+
+.alert__popup .confirm__buttonBx button {
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 8px;
+  width: 100px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.alert__popup .confirm__buttonBx button.button__yes {
+  background-color: #16a085;
+}
+
+.alert__popup .confirm__buttonBx button.button__no {
+  background-color: #c0392b;
+}
+/*# sourceMappingURL=style.css.map */
