@@ -1,0 +1,20 @@
+#productDetails {
+    display: flex;
+    justify-content: center;
+    height: 20vh;
+    width: 100%;
+    input {
+        height: 30px;
+        width: 200px;
+    }
+}
+#tables {
+    height: 40vh;
+    table,
+    th,
+    tr,
+    td {
+        border: 1px solid black;
+        padding: 5px;
+    }
+}
