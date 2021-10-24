@@ -20,3 +20,27 @@
         }
     }
 }
+
+nav.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background-color: #2d3436;
+    border-bottom: 1px solid #ccc;
+
+    &,a {
+        color: #fff;
+    }
+
+    ul {
+        display: flex;
+        li {
+            margin: 0 10px;
+        }
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+}

@@ -15,6 +15,16 @@
 </head>
 
 <body>
+    <nav class="navbar">
+        <div class="logo">
+            BarkodPen
+        </div>
+        <ul>
+            <li><a href="#">Anasayfa</a></li>
+            <li><a href="#">Ürünler</a></li>
+            <li><a href="#">Ürün Ekle</a></li>
+        </ul>
+    </nav>
     <div id="container">
         <section id="sidebar">
             <ul>
@@ -33,10 +43,6 @@
         <script src="{{ asset('content/library/js/notification.js') }}"></script>
         @yield('body')
     </div>
-    
-    <script>
-        console.log(tori);
-    </script>
 </body>
 
 </html>
