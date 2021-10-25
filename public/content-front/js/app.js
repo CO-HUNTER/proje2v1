@@ -13,7 +13,7 @@ const App = (function () {
       let value2 = parseFloat(item.querySelector(".table_quantity").innerText);
       totalPrice += [value1, value2].reduce((total, item) => total * item, 1);
     });
-    textField.innerText = `${totalPrice.toFixed(2)}₺`;
+    textField.innerText = `${totalPrice.toFixed(2)}`;
     return totalPrice;
   };
 
@@ -69,6 +69,19 @@ const App = (function () {
     getTotal(".table tbody");
   }
 
+  function deleteRow({ target }) {
+    target.closest("tr").remove();
+    getTotal(".table tbody");
+    let total = getTotal(".table tbody");
+    let gap;
+    if (parseFloat(receivedMoney.value) > total.toFixed(2)) {
+      gap = (receivedMoney.value - total.toFixed(2)).toFixed(2);
+      gapField.innerText = `${gap}₺`;
+    } else {
+      gapField.innerText = "";
+    }
+  }
+
   receivedMoney.addEventListener("input", ({ target }) => {
     let total = getTotal(".table tbody");
     let gap;
@@ -92,6 +105,8 @@ const App = (function () {
 
       const { barcode, price, product_name, product_id } = await JSON.parse(response);
 
+      target.value = "";
+
       html = `
         <tr>
           <td>${product_name}</td>
@@ -102,15 +117,15 @@ const App = (function () {
           <td>
             <i onclick="App.increaseFunction(event)" class="uil uil-plus"></i>
             <i onclick="App.decreaseFunction(event)" class="uil uil-minus"></i>
-            <i class="uil uil-trash"></i>
+            <i onclick="App.deleteRow(event)" class="uil uil-trash"></i>
           </td>
       </tr>`;
 
       let columnLength = requestField.children.length;
       let a;
-      let control=true;
+      let control = true;
       document.querySelectorAll(".barcode").forEach(item => {
-        a+=item.innerHTML;
+        a += item.innerHTML;
       })
       if (columnLength > 0) {
         document.querySelectorAll(".barcode").forEach(item => {
@@ -118,10 +133,10 @@ const App = (function () {
             let a = parseFloat(item.closest("tr").querySelector(".table_quantity").innerHTML);
             a++;
             item.closest("tr").querySelector(".table_quantity").innerHTML = a;
-            control=false;
-          } else if(a.indexOf(barcode)==-1&&control) {
+            control = false;
+          } else if (a.indexOf(barcode) == -1 && control) {
             requestField.innerHTML += html;
-            control=false;
+            control = false;
           }
         })
       } else {
@@ -129,37 +144,56 @@ const App = (function () {
       }
 
       getTotal(".table tbody");
+      let total = getTotal(".table tbody");
+      let gap;
+      if (parseFloat(receivedMoney.value) > total.toFixed(2)) {
+        gap = (receivedMoney.value - total.toFixed(2)).toFixed(2);
+        gapField.innerText = `${gap}₺`;
+      } else {
+        gapField.innerText = "";
+      }
     }
   });
 
-  let dataList = [];
-  let obj = {};
-  let newList = [];
+  // let dataList = [];
+  // let obj = {};
+  // let newList = [];
+  let id = [];
+  let quantity = [];
+  let totalAmount;
   finishedBtn.addEventListener("click", async () => {
     [...requestField.children].forEach(item => {
-      obj = {
-        id: item.querySelector(".hidden").innerText,
-        quantity: item.querySelector(".table_quantity").innerText
-      }
-      newList = [obj, ...dataList];
-      dataList = newList;
+      id.push(item.querySelector(".hidden").innerText);
+      quantity.push(item.querySelector(".table_quantity").innerText);
+      totalAmount = document.querySelector(".total_price").innerText;
+      // obj = {
+      //   id: item.querySelector(".hidden").innerText,
+      //   quantity: item.querySelector(".table_quantity").innerText
+      // }
+      // newList = [obj, ...dataList];
+      // dataList = newList;
     });
 
 
     const response = await prAjax({
       method: "POST",
       url: "http://127.0.0.1:8000/finishHim",
-      data: { dataList }
+      data: { id, quantity, totalAmount }
     }, { csrf });
 
-    const result = await JSON.parse(response);
-    console.log(result)
+    if (response == "başarılı") {
+      requestField.innerHTML = "";
+      receivedMoney.value = "";
+      gapField.innerHTML = "";
+      getTotal(".table tbody")
+    }
   });
 
 
 
   return {
     increaseFunction,
-    decreaseFunction
+    decreaseFunction,
+    deleteRow
   }
 })();
