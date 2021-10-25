@@ -6,9 +6,10 @@
 <!-- Form -->
 <section class="my flex_center">
   <form action="" class="form" method="POST">
+    @csrf
     <div class="input_field">
       <label>Barkod Giriniz</label>
-      <input type="number" name="product_barcode" />
+      <input class="product-barcode" type="number" name="product_barcode" />
     </div>
     <div class="input_field">
       <label>Alınan Para</label>
@@ -28,6 +29,10 @@
 
     <i class="uil uil-trash"></i>
     Ürünü Sil
+
+    <button class="btn-default finished-buy">
+      Alışverişi Bitir
+    </button>
   </div>
 </section>
 
@@ -43,41 +48,7 @@
         <th>İşlemler</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>Elma</td>
-        <td>1234567897815</td>
-        <td class="table_price">5.2</td>
-        <td class="table_quantity">1</td>
-        <td>
-          <i class="uil uil-plus"></i>
-          <i class="uil uil-minus"></i>
-          <i class="uil uil-trash"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>Kola</td>
-        <td>1234595893215</td>
-        <td class="table_price">6</td>
-        <td class="table_quantity">2</td>
-        <td>
-          <i class="uil uil-plus"></i>
-          <i class="uil uil-minus"></i>
-          <i class="uil uil-trash"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>Yumurta</td>
-        <td>1234567893215</td>
-        <td class="table_price">2.3</td>
-        <td class="table_quantity">3</td>
-        <td>
-          <i class="uil uil-plus"></i>
-          <i class="uil uil-minus"></i>
-          <i class="uil uil-trash"></i>
-        </td>
-      </tr>
-    </tbody>
+    <tbody></tbody>
   </table>
 </section>
 

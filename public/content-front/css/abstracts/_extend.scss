@@ -32,6 +32,17 @@
   }
 }
 
+%button {
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  color: #fff;
+  background-color: $current_color;
+  border-radius: 7px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
 %sec {
   width: 60%;
   margin: 25px 0;

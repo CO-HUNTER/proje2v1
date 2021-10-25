@@ -6,6 +6,7 @@ use App\Http\Controllers\back\AddController;
 use App\Http\Controllers\back\DeleteController;
 use App\Http\Controllers\back\UpdateController;
 use App\Http\Controllers\ImportOperationsController;
+use App\Http\Controllers\Front\ResponseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ use App\Http\Controllers\ImportOperationsController;
 Route::get('/', function(){
   return view('front.index');
 })->name('index');
+
+Route::post('barcode',[ResponseController::class,'barcodeQuery'])->name('barcodeQuery');
+Route::post('finishHim',[ResponseController::class,'finish'])->name('asd');
 
 Route::middleware(['login'])->prefix('admin')->group(function () {
   Route::get('/', function(){

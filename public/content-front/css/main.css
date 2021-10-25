@@ -37,6 +37,17 @@
   background-color: #d63031;
 }
 
+.btn-default {
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  color: #fff;
+  background-color: #00b894;
+  border-radius: 7px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
 .operation_information, .order_information {
   width: 60%;
   margin: 25px 0;
@@ -66,9 +77,17 @@
   margin-left: 50px;
 }
 
+.operation_information button {
+  margin-left: 30px;
+}
+
 .order_information span {
   font-weight: bold;
   margin-left: 10px;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .form {
