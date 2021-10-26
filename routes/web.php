@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\back\ShowController;
-use App\Http\Controllers\back\AddController;
-use App\Http\Controllers\back\DeleteController;
-use App\Http\Controllers\back\UpdateController;
+use App\Http\Controllers\Back\ShowController;
+use App\Http\Controllers\Back\AddController;
+use App\Http\Controllers\Back\DeleteController;
+use App\Http\Controllers\Back\UpdateController;
 use App\Http\Controllers\ImportOperationsController;
 use App\Http\Controllers\Front\ResponseController;
 
@@ -26,11 +26,13 @@ Route::get('/', function(){
 Route::post('barcode',[ResponseController::class,'barcodeQuery'])->name('barcodeQuery');
 Route::post('finishHim',[ResponseController::class,'finish'])->name('asd');
 
+
 Route::middleware(['login'])->prefix('admin')->group(function () {
   Route::get('/', function(){
     return view('back.home');
   })->name('home');
   Route::get('/productslist',[ShowController::class,'products'])->name('products');
+  Route::get('/shoppinglist',[ShowController::class,'shopList'])->name('shoplist');
 
   Route::get('productadd', function(){
     return view('back.products');

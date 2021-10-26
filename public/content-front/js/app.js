@@ -55,23 +55,7 @@ const App = (function () {
   let finishedBtn = document.querySelector(".finished-buy");
   let html = "";
 
-  function increaseFunction({ target }) {
-    let quantity = parseFloat(target.closest("tr").querySelector(".table_quantity").innerText);
-    quantity++;
-    target.closest("tr").querySelector(".table_quantity").innerText = quantity;
-    getTotal(".table tbody");
-  }
-
-  function decreaseFunction({ target }) {
-    let quantity = parseFloat(target.closest("tr").querySelector(".table_quantity").innerText);
-    quantity > 0 ? quantity-- : null;
-    target.closest("tr").querySelector(".table_quantity").innerText = quantity;
-    getTotal(".table tbody");
-  }
-
-  function deleteRow({ target }) {
-    target.closest("tr").remove();
-    getTotal(".table tbody");
+  function rcMoney() {
     let total = getTotal(".table tbody");
     let gap;
     if (parseFloat(receivedMoney.value) > total.toFixed(2)) {
@@ -82,16 +66,29 @@ const App = (function () {
     }
   }
 
-  receivedMoney.addEventListener("input", ({ target }) => {
-    let total = getTotal(".table tbody");
-    let gap;
-    if (parseFloat(target.value) > total.toFixed(2)) {
-      gap = (target.value - total.toFixed(2)).toFixed(2);
-      gapField.innerText = `${gap}₺`;
-    } else {
-      gapField.innerText = "";
-    }
-  });
+  function increaseFunction({ target }) {
+    let quantity = parseFloat(target.closest("tr").querySelector(".table_quantity").innerText);
+    quantity++;
+    target.closest("tr").querySelector(".table_quantity").innerText = quantity;
+    getTotal(".table tbody");
+    rcMoney();
+  }
+
+  function decreaseFunction({ target }) {
+    let quantity = parseFloat(target.closest("tr").querySelector(".table_quantity").innerText);
+    quantity > 0 ? quantity-- : null;
+    target.closest("tr").querySelector(".table_quantity").innerText = quantity;
+    getTotal(".table tbody");
+    rcMoney();
+  }
+
+  function deleteRow({ target }) {
+    target.closest("tr").remove();
+    getTotal(".table tbody");
+    rcMoney();
+  }
+
+  receivedMoney.addEventListener("input", rcMoney);
 
   barcode.addEventListener("input", async ({ target }) => {
     if (target.value.length === 13) {
@@ -102,12 +99,18 @@ const App = (function () {
         url: "http://127.0.0.1:8000/barcode",
         data: { value }
       }, { csrf });
+      if (response == "null") {
+        tori.notification("Bu ürün kayıtlı değil", {
+          type: "error",
+          duration: 5000
+        });
+        target.value = "";
+      } else {
+        const { barcode, price, product_name, product_id } = await JSON.parse(response);
 
-      const { barcode, price, product_name, product_id } = await JSON.parse(response);
+        target.value = "";
 
-      target.value = "";
-
-      html = `
+        html = `
         <tr>
           <td>${product_name}</td>
           <td><span class='barcode'>${barcode}</span></td>
@@ -121,43 +124,89 @@ const App = (function () {
           </td>
       </tr>`;
 
-      let columnLength = requestField.children.length;
-      let a;
-      let control = true;
-      document.querySelectorAll(".barcode").forEach(item => {
-        a += item.innerHTML;
-      })
-      if (columnLength > 0) {
+        let columnLength = requestField.children.length;
+        let a;
+        let control = true;
         document.querySelectorAll(".barcode").forEach(item => {
-          if (barcode === item.innerHTML) {
-            let a = parseFloat(item.closest("tr").querySelector(".table_quantity").innerHTML);
-            a++;
-            item.closest("tr").querySelector(".table_quantity").innerHTML = a;
-            control = false;
-          } else if (a.indexOf(barcode) == -1 && control) {
-            requestField.innerHTML += html;
-            control = false;
-          }
+          a += item.innerHTML;
         })
-      } else {
-        requestField.innerHTML += html;
-      }
+        if (columnLength > 0) {
+          document.querySelectorAll(".barcode").forEach(item => {
+            if (barcode === item.innerHTML) {
+              let a = parseFloat(item.closest("tr").querySelector(".table_quantity").innerHTML);
+              a++;
+              item.closest("tr").querySelector(".table_quantity").innerHTML = a;
+              control = false;
+            } else if (a.indexOf(barcode) == -1 && control) {
+              requestField.innerHTML += html;
+              control = false;
+            }
+          })
+        } else {
+          requestField.innerHTML += html;
+        }
 
-      getTotal(".table tbody");
-      let total = getTotal(".table tbody");
-      let gap;
-      if (parseFloat(receivedMoney.value) > total.toFixed(2)) {
-        gap = (receivedMoney.value - total.toFixed(2)).toFixed(2);
-        gapField.innerText = `${gap}₺`;
+        getTotal(".table tbody");
+        rcMoney();
+      }
+    } else if (target.value.length === 8) {
+      let value = target.value;
+
+      const response = await prAjax({
+        method: "POST",
+        url: "http://127.0.0.1:8000/barcode",
+        data: { value }
+      }, { csrf });
+      if (response == "null") {
+
+
       } else {
-        gapField.innerText = "";
+        const { barcode, price, product_name, product_id } = await JSON.parse(response);
+
+        target.value = "";
+
+        html = `
+        <tr>
+          <td>${product_name}</td>
+          <td><span class='barcode'>${barcode}</span></td>
+          <td class="table_price">${price}</td>
+          <td class="table_quantity">1</td>
+          <td class="hidden">${product_id}</td>
+          <td>
+            <i onclick="App.increaseFunction(event)" class="uil uil-plus"></i>
+            <i onclick="App.decreaseFunction(event)" class="uil uil-minus"></i>
+            <i onclick="App.deleteRow(event)" class="uil uil-trash"></i>
+          </td>
+      </tr>`;
+
+        let columnLength = requestField.children.length;
+        let a;
+        let control = true;
+        document.querySelectorAll(".barcode").forEach(item => {
+          a += item.innerHTML;
+        })
+        if (columnLength > 0) {
+          document.querySelectorAll(".barcode").forEach(item => {
+            if (barcode === item.innerHTML) {
+              let a = parseFloat(item.closest("tr").querySelector(".table_quantity").innerHTML);
+              a++;
+              item.closest("tr").querySelector(".table_quantity").innerHTML = a;
+              control = false;
+            } else if (a.indexOf(barcode) == -1 && control) {
+              requestField.innerHTML += html;
+              control = false;
+            }
+          })
+        } else {
+          requestField.innerHTML += html;
+        }
+
+        getTotal(".table tbody");
+        rcMoney();
       }
     }
   });
 
-  // let dataList = [];
-  // let obj = {};
-  // let newList = [];
   let id = [];
   let quantity = [];
   let totalAmount;
@@ -166,12 +215,6 @@ const App = (function () {
       id.push(item.querySelector(".hidden").innerText);
       quantity.push(item.querySelector(".table_quantity").innerText);
       totalAmount = document.querySelector(".total_price").innerText;
-      // obj = {
-      //   id: item.querySelector(".hidden").innerText,
-      //   quantity: item.querySelector(".table_quantity").innerText
-      // }
-      // newList = [obj, ...dataList];
-      // dataList = newList;
     });
 
 
@@ -186,10 +229,11 @@ const App = (function () {
       receivedMoney.value = "";
       gapField.innerHTML = "";
       getTotal(".table tbody")
+      id = [];
+      quantity = [];
+      totalAmount
     }
   });
-
-
 
   return {
     increaseFunction,

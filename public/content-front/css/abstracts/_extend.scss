@@ -24,7 +24,10 @@
   font-size: 17px;
   margin: 0 5px;
   border-radius: 5px;
-
+  @include res(1100) {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
   @for $i from 1 through length($table-operation_color) {
     &:nth-child(#{$i}) {
       background-color: nth($table-operation_color, $i);
@@ -41,6 +44,9 @@
   border-radius: 7px;
   font-size: 15px;
   cursor: pointer;
+  @include res(1100) {
+    padding: 6px 9px;
+  }
 }
 
 %sec {

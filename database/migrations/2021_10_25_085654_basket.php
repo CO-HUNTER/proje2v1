@@ -17,9 +17,9 @@ class Basket extends Migration
         Schema::create('basket', function (Blueprint $table) {
             $table->id('basket_id');
             $table->unsignedBigInteger('product');
-            $table->foreign('product')->references('product_id')->on('products');
+            $table->foreign('product')->references('product_id')->on('products')->onDelete('cascade');;
             $table->unsignedBigInteger('customer');
-            $table->foreign('customer')->references('customer_id')->on('customer');
+            $table->foreign('customer')->references('customer_id')->on('customer')->onDelete('cascade');;
             $table->integer('quanity');
         });
     }

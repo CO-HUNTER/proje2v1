@@ -30,6 +30,20 @@
           align-items: center;
 }
 
+.search-form input {
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 5px 15px;
+  border-radius: 7px;
+}
+
+.search-form button {
+  background-color: #10ac84;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 4px;
+}
+
 #sidebar {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -165,8 +179,8 @@ nav.navbar .logo {
   border: 1px solid #ccc;
 }
 
-#tables table tbody tr {
-  height: 80px !important;
+#tables table tbody {
+  height: 300px !important;
 }
 
 #tables table tbody tr:nth-child(even) {

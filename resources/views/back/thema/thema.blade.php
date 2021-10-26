@@ -37,6 +37,9 @@
                 <a href="{{route('products')}}">
                     <li>Ürün Listele</li>
                 </a>
+                <a href="{{route('shoplist')}}">
+                    <li>Alışveriş Listele</li>
+                </a>
             </ul>
         </section>
         <script src="{{ asset('content/library/js/interface.js') }}"></script>

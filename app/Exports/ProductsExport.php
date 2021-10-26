@@ -12,8 +12,8 @@ class ProductsExport implements FromCollection,WithHeadings
     return [
         'ID',
         'Ürün Adı',
-        'Fiyat',
         'Barkod',
+        'Fiyat',
 
     ];
     }

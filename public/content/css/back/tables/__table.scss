@@ -10,9 +10,9 @@
         width: 60%;
         border: 1px solid #ccc;
 
-        tbody {
+        tbody {    
+        height: 300px !important;
             tr {
-                height: 80px !important;
 
                 &:nth-child(even) {
                     background: #f2f2f2;

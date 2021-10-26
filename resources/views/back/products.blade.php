@@ -25,8 +25,9 @@
                 <h2>Ürün Ekle</h2>
                 @csrf
                 <label> Ürün Ad</label> <input type="text" name="ad">
+                <label> Fiyat</label> <input type="text"  name="fiyat">
                 <label> Barkod</label> <input type="text" name="barkod">
-                <label> Fiyat</label> <input type="number" min="0" max="10000" name="fiyat">
+                
 
                 <button type="submit">Ürün Ekle</button>
             </form>

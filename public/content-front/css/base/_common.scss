@@ -3,7 +3,7 @@
 }
 
 .my {
-  margin: 30px 0;
+  margin: 5px 0;
 }
 
 .flex_center {
@@ -15,7 +15,10 @@
 
   i {
     &:not(:first-child) {
-      margin-left: 50px
+      margin-left: 50px;
+      @include res(1100) {
+        margin-left: 20px;
+      }
     }
 
     @extend %operation_icon;

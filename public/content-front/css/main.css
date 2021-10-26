@@ -25,6 +25,13 @@
   border-radius: 5px;
 }
 
+@media screen and (max-width: 1100px) {
+  .operation_information i, .table tbody tr td i {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+}
+
 .operation_information i:nth-child(1), .table tbody tr td i:nth-child(1) {
   background-color: #00b894;
 }
@@ -46,6 +53,12 @@
   border-radius: 7px;
   font-size: 15px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1100px) {
+  .btn-default {
+    padding: 6px 9px;
+  }
 }
 
 .operation_information, .order_information {
@@ -70,11 +83,17 @@
 }
 
 .my {
-  margin: 30px 0;
+  margin: 5px 0;
 }
 
 .operation_information i:not(:first-child) {
   margin-left: 50px;
+}
+
+@media screen and (max-width: 1100px) {
+  .operation_information i:not(:first-child) {
+    margin-left: 20px;
+  }
 }
 
 .operation_information button {
@@ -107,9 +126,9 @@
 .form .input_field input {
   background-color: #f2f2f2;
   width: 100%;
-  padding: 11px;
+  padding: 7px;
   border-radius: 6px;
-  margin: 10px 0;
+  margin: 5px 0;
   color: #2d3436;
 }
 
