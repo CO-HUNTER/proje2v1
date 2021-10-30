@@ -87,7 +87,7 @@
 }
 
 .operation_information i:not(:first-child) {
-  margin-left: 50px;
+  margin-left: 40px;
 }
 
 @media screen and (max-width: 1100px) {
@@ -97,7 +97,7 @@
 }
 
 .operation_information button {
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 .order_information span {

@@ -15,7 +15,7 @@ class UpdateController extends Controller
 
         $request->validate([
             'update_product_name' => 'required|min:3',
-            'update_product_barcode' => 'required|min:13|max:13',
+            'update_product_barcode' => 'required|min:8|max:13',
             'update_product_price' => 'required'
         ]);
       

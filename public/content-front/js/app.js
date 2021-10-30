@@ -217,7 +217,7 @@ const App = (function () {
       totalAmount = document.querySelector(".total_price").innerText;
     });
 
-
+    if(parseFloat(totalAmount)>0){
     const response = await prAjax({
       method: "POST",
       url: "http://127.0.0.1:8000/finishHim",
@@ -233,8 +233,9 @@ const App = (function () {
       quantity = [];
       totalAmount
     }
+  }
   });
-
+  
   return {
     increaseFunction,
     decreaseFunction,
