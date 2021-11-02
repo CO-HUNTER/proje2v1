@@ -6,7 +6,8 @@
 
     <div id="content">
         <section id="tables">
-            <table>
+            <div><button onclick="ExportToExcel()">Alışverişleri listele</button> </div>
+            <table id="export">
                 <thead>
                     <tr>
                         <th>Müşteri ID</th>
@@ -40,6 +41,14 @@
 
         </section>
     </div>
-
-
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script>
+    function ExportToExcel(type, fn, dl) {
+       var elt = document.getElementById('export');
+       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+       return dl ?
+         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+         XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
+    }
+     </script>
 @endsection
