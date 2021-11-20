@@ -21,6 +21,7 @@
     @endif
     <div id="content">
         <form action="{{route('products')}}" method="GET" class="search-form">
+            <input type="text" name="ad" placeholder="Ürün Adı Giriniz">
             <input type="text" name="barcode" placeholder="Barkod Giriniz">
             <button type="submit">ARA</button>
         </form>

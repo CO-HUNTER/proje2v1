@@ -12,7 +12,11 @@ class ShowController extends Controller
     public function products(Request $request)
     {
         $barcode = $request->barcode;
-        $query = DB::table('products')->where('barcode', 'like', "%$barcode%")->simplePaginate(15);
+        $name=$request->ad;
+        $query = DB::table('products')
+        ->where('barcode', 'like', "%$barcode%")
+        ->where('product_name', 'like', "%$name%")
+        ->simplePaginate(15);
         return view('back.productslist', compact('query'));
     }
 
